@@ -1,6 +1,7 @@
 require "minitest/unit"
 require "minitest/autorun"
-require "turn" unless ENV['TM_RUBY']
+require "active_support"
+require "active_support/core_ext/string"
 
 require "constantine"
 
@@ -86,6 +87,25 @@ class ContantineTest < MiniTest::Unit::TestCase
     define "Alpha::Bravo" do
     end
     refute Object.const_defined? "Alpha"
+  end
+
+  def test_magic
+    define "Alpha::Bravo" do
+      assert_raises NameError do
+        "AlphaBravo".constantize
+      end
+      ActiveSupport::Inflector.send :extend, Constantine::Support
+      assert_equal Alpha::Bravo, "AlphaBravo".constantize
+    end
+  end
+
+  def test_reasonable_constant_missing
+    define "Alpha::Bravo" do
+      exception = assert_raises NameError do
+        Constantine.constantize("::Alpha::BravoCharlie")
+      end
+      assert_match /Alpha::BravoCharlie/, exception.message
+    end
   end
 
   private
