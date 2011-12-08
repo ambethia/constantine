@@ -14,7 +14,6 @@ module Constantine
       names.each do |name|
         if constant.const_defined?(name)
           constant = constant.const_get(name) 
-          last_known = constant
         end
         if constant.respond_to?(:name) && constant.name == potential_name
           return constant
