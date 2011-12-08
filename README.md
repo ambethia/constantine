@@ -18,7 +18,7 @@ A railtie exists for patching ActiveSupport's implementation:
 "SupportTicket".constantize
 ```
 
-The idea was to allow more implicit definitions in an Rails app with a lot of
+The idea was to allow more implicit definitions in a Rails app with a lot of
 namespace modules:
 
 ``` ruby
