@@ -12,4 +12,4 @@ end
 
 # Copyright
 
-Copyright (c) 2009 Jason L Perry. See LICENSE for details.
+Copyright (c) 2011 Jason L Perry. See LICENSE for details.
